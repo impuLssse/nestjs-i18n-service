@@ -1,0 +1,17 @@
+volumes:
+  pg_data:
+
+services:
+  pg_server:
+    image: postgres
+    container_name: pg_server
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: $PG_DATABASE
+      POSTGRES_USER: $PG_USERNAME
+      POSTGRES_PASSWORD: $PG_PASSWORD
+    volumes:
+      - pg_data:/var/lib/posgresql/data
+    ports:
+      - $PG_PORT:5432
